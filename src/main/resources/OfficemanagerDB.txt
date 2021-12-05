@@ -1,0 +1,87 @@
+//Docker installieren und öffnen
+//Befehle werden in cmd (Windows) / Terminal (Mac)
+
+//Überprüfen ob Docker installiert ist
+docker --version
+
+//Pull MySQL Image from DockerDatabase
+docker pull mysql:8.0
+
+//Create Docker Container mit Port und Passwort
+docker run --name=officemanager -p 3306:3306 -e MYSQL_ROOT_PASSWORD=admin -d mysql:8.0
+
+//Anmelden in der Datenbank
+docker exec -it officemanager mysql -u root -p
+
+//WICHTIG: Bei den folgenden Befehlen immer ";" anhängen bevor ausgeführt wird
+//User erstellen
+//1.'localhost' = nur localhost | 2.'%'=zugriff von auserhalb
+//In diesem Fall '%' da zugriff von DataGrip stattfindet
+CREATE USER 'admin'@'%' IDENTIFIED BY 'admin';
+
+//User Rechte für Tabellen geben
+GRANT ALL PRIVILEGES ON * . * TO 'admin'@'localhost';
+
+//Rechte aktualisieren
+FLUSH PRIVILEGES;
+
+//Versionsnummer überprüfen ("Server Version: ...")
+status;
+
+//DataGrip Conection Herstellen und anhängende Datei ausführen
+create schema officemanager collate utf8mb4_0900_ai_ci;
+
+//Gruppierung
+create table Gruppierung
+(
+    Id      int         not null
+        primary key,
+    Gruppen varchar(50) not null,
+    constraint Classification_Gruppen_uindex
+        unique (Gruppen)
+)
+    comment 'Teilt in die nötigen Gruppen auf';
+
+insert into officemanager.Gruppierung (Id, Gruppen)
+values  (1, 'Elektrogeräte'),
+        (2, 'Möbel'),
+        (3, 'Schreibwaren');
+
+//Elektrogeräte
+create table Elektrogeräte
+(
+    Id   int         not null
+        primary key,
+    Name varchar(50) not null
+);
+
+insert into officemanager.Elektrogeräte (Id, Name)
+values  (1, 'Drucker'),
+        (2, 'Scanner'),
+        (3, 'Telefon');
+
+//Möbel
+create table Möbel
+(
+    Id   int         not null
+        primary key,
+    Name varchar(50) not null
+);
+
+insert into officemanager.Möbel (Id, Name)
+values  (1, 'Tisch'),
+        (2, 'Stuhl'),
+        (3, 'Schrank');
+
+//Schreibwaren
+create table Schreibwaren
+(
+    Id   int         not null
+        primary key,
+    Name varchar(50) not null
+);
+
+insert into officemanager.Schreibwaren (Id, Name)
+values  (1, 'Kugelschreiber'),
+        (2, 'Stempel'),
+        (3, 'Bleistift');
