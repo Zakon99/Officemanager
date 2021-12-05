@@ -1,4 +1,4 @@
-package com.iu.application.views.login;
+package com.iu.application.views;
 
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Image;
