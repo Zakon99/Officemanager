@@ -1,5 +1,6 @@
 package com.iu.application.views;
 
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
@@ -10,6 +11,7 @@ import com.vaadin.flow.router.Route;
 @PageTitle("home")
 @Route(value = "officmanager.com/home")
 public class HomeView extends VerticalLayout {
+    Button button = new Button("Test");
 
     public HomeView() {
         setSpacing(false);
