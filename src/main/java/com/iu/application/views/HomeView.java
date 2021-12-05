@@ -11,7 +11,7 @@ import com.vaadin.flow.router.Route;
 @PageTitle("home")
 @Route(value = "officmanager.com/home")
 public class HomeView extends VerticalLayout {
-    Button button = new Button("Test");
+    Button button = new Button("Test1234");
 
     public HomeView() {
         setSpacing(false);
