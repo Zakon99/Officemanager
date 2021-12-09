@@ -20,7 +20,7 @@ docker exec -it officemanager mysql -u root -p
 CREATE USER 'admin'@'%' IDENTIFIED BY 'admin';
 
 //User Rechte für Tabellen geben
-GRANT ALL PRIVILEGES ON * . * TO 'admin'@'localhost';
+GRANT ALL PRIVILEGES ON * . * TO 'admin'@'%';
 
 //Rechte aktualisieren
 FLUSH PRIVILEGES;
