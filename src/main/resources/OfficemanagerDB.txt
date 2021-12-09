@@ -43,32 +43,32 @@ create table Gruppierung
     comment 'Teilt in die nötigen Gruppen auf';
 
 insert into officemanager.Gruppierung (Id, Gruppen)
-values  (1, 'Elektrogeräte'),
-        (2, 'Möbel'),
+values  (1, 'Elektrogeraete'),
+        (2, 'Moebel'),
         (3, 'Schreibwaren');
 
 //Elektrogeräte
-create table Elektrogeräte
+create table Elektrogeraete
 (
     Id   int         not null
         primary key,
     Name varchar(50) not null
 );
 
-insert into officemanager.Elektrogeräte (Id, Name)
+insert into officemanager.Elektrogeraete (Id, Name)
 values  (1, 'Drucker'),
         (2, 'Scanner'),
         (3, 'Telefon');
 
 //Möbel
-create table Möbel
+create table Moebel
 (
     Id   int         not null
         primary key,
     Name varchar(50) not null
 );
 
-insert into officemanager.Möbel (Id, Name)
+insert into officemanager.Moebel (Id, Name)
 values  (1, 'Tisch'),
         (2, 'Stuhl'),
         (3, 'Schrank');
