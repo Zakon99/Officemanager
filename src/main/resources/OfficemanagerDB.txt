@@ -85,3 +85,28 @@ insert into officemanager.Schreibwaren (Id, Name)
 values  (1, 'Kugelschreiber'),
         (2, 'Stempel'),
         (3, 'Bleistift');
+
+//User
+create table officemanager.user
+(
+    id int          not null,
+    pw varchar(500) not null,
+    constraint user_id_uindex
+        unique (id)
+);
+
+alter table officemanager.user
+    add primary key (id);
+
+//UserData
+create table officemanager.userdata
+(
+    userId  int         not null,
+    artikel varchar(50) not null,
+    anzahl  int         null,
+    constraint userdata_userId_uindex
+        unique (userId)
+);
+
+alter table officemanager.userdata
+    add primary key (userId);
