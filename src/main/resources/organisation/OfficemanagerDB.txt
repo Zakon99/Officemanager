@@ -46,14 +46,14 @@ alter table officemanager.user
 //article
 create table article
 (
-	userId int not null,
-	name varchar(50) not null,
-	count int null
+    userId int         not null,
+    name   varchar(50) not null,
+    anzahl int         null,
+    preis  int         null,
+    constraint article_userId_uindex
+        unique (userId)
 );
 
-create unique index article_userId_uindex
-	on article (userId);
-
 alter table article
-	add constraint article_pk
-		primary key (userId);
+    add primary key (userId);
+
