@@ -31,61 +31,6 @@ status;
 //DataGrip Conection Herstellen und anhängende Datei ausführen
 create schema officemanager collate utf8mb4_0900_ai_ci;
 
-//Gruppierung
-create table Gruppierung
-(
-    Id      int         not null
-        primary key,
-    Gruppen varchar(50) not null,
-    constraint Classification_Gruppen_uindex
-        unique (Gruppen)
-)
-    comment 'Teilt in die nötigen Gruppen auf';
-
-insert into officemanager.Gruppierung (Id, Gruppen)
-values  (1, 'Elektrogeraete'),
-        (2, 'Moebel'),
-        (3, 'Schreibwaren');
-
-//Elektrogeräte
-create table Elektrogeraete
-(
-    Id   int         not null
-        primary key,
-    Name varchar(50) not null
-);
-
-insert into officemanager.Elektrogeraete (Id, Name)
-values  (1, 'Drucker'),
-        (2, 'Scanner'),
-        (3, 'Telefon');
-
-//Möbel
-create table Moebel
-(
-    Id   int         not null
-        primary key,
-    Name varchar(50) not null
-);
-
-insert into officemanager.Moebel (Id, Name)
-values  (1, 'Tisch'),
-        (2, 'Stuhl'),
-        (3, 'Schrank');
-
-//Schreibwaren
-create table Schreibwaren
-(
-    Id   int         not null
-        primary key,
-    Name varchar(50) not null
-);
-
-insert into officemanager.Schreibwaren (Id, Name)
-values  (1, 'Kugelschreiber'),
-        (2, 'Stempel'),
-        (3, 'Bleistift');
-
 //User
 create table officemanager.user
 (
@@ -98,15 +43,17 @@ create table officemanager.user
 alter table officemanager.user
     add primary key (id);
 
-//UserData
-create table officemanager.userdata
+//article
+create table article
 (
-    userId  int         not null,
-    artikel varchar(50) not null,
-    anzahl  int         null,
-    constraint userdata_userId_uindex
-        unique (userId)
+	userId int not null,
+	name varchar(50) not null,
+	count int null
 );
 
-alter table officemanager.userdata
-    add primary key (userId);
+create unique index article_userId_uindex
+	on article (userId);
+
+alter table article
+	add constraint article_pk
+		primary key (userId);
