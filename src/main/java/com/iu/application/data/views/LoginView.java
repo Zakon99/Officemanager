@@ -1,20 +1,19 @@
-package com.iu.application.views;
+package com.iu.application.data.views;
 
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouteAlias;
 
-@PageTitle("home")
-@Route(value = "officmanager.com/home")
-public class HomeView extends VerticalLayout {
-    Button button = new Button("Test1234");
-    Button button123 = new Button("Test1234");
+@PageTitle("login")
+@Route(value = "officemanager.com")
+@RouteAlias(value = "")
+public class LoginView extends VerticalLayout {
 
-    public HomeView() {
+    public LoginView() {
         setSpacing(false);
 
         Image img = new Image("images/empty-plant.png", "placeholder plant");
