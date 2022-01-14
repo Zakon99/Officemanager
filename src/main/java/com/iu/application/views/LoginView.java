@@ -9,7 +9,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 
 @PageTitle("login")
-@Route(value = "officmanager.com")
+@Route(value = "officemanager.com")
 @RouteAlias(value = "")
 public class LoginView extends VerticalLayout {
 

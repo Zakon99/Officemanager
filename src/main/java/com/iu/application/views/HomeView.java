@@ -1,33 +1,58 @@
 package com.iu.application.views;
 
+import com.iu.application.views.list.ArtikelListe;
+import com.vaadin.flow.component.applayout.AppLayout;
+import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.html.H2;
-import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.html.Paragraph;
+import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouterLink;
+
 
 @PageTitle("home")
-@Route(value = "officmanager.com/home")
-public class HomeView extends VerticalLayout {
-    Button button = new Button("Test1234");
-    Button button123 = new Button("Test1234");
+@Route(value = "officemanager.com/home")
+public class HomeView extends AppLayout {
+
 
     public HomeView() {
-        setSpacing(false);
+        createHeader();
+        createDrawer();
+        createFooter();
 
-        Image img = new Image("images/empty-plant.png", "placeholder plant");
-        img.setWidth("200px");
-        add(img);
+    }
 
-        add(new H2("This place intentionally left empty"));
-        add(new Paragraph("It’s a place where you can grow your own UI 🤗"));
+    private void createFooter() {
 
-        setSizeFull();
-        setJustifyContentMode(JustifyContentMode.CENTER);
-        setDefaultHorizontalComponentAlignment(Alignment.CENTER);
-        getStyle().set("text-align", "center");
+    }
+
+    private void createHeader() {
+        H1 logo = new H1("Officemanager");
+        logo.addClassNames("text-l", "m-m");
+
+        Button kontakt = new Button("Kontakt");
+
+        HorizontalLayout header = new HorizontalLayout(new DrawerToggle(), logo, kontakt);
+
+        header.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
+        header.expand(logo);
+        header.setWidth("100%");
+        addToNavbar(header);
+    }
+
+    private void createDrawer() {
+        RouterLink listLink = new RouterLink("Artikel", ArtikelListe.class);
+        listLink.setHighlightCondition(HighlightConditions.sameLocation());
+
+        addToDrawer(new VerticalLayout(
+                listLink,
+                new RouterLink("...", HomeView.class)
+        ));
+
     }
 
 }
