@@ -1,9 +1,8 @@
-package com.iu.application.data.views.list;
+package com.iu.application.views.list;
 
-import com.iu.application.data.entity.Artikel;
-import com.iu.application.data.views.HomeView;
+import com.iu.application.entity.Artikel;
+import com.iu.application.views.HomeView;
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -12,11 +11,7 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-import javax.swing.text.html.ListView;
-
 import java.util.Collections;
-
-import static io.swagger.v3.core.util.AnnotationsUtils.getContent;
 
 @PageTitle("Artikelliste | Officemanager")
 @Route(value = "officemanager.com/Artikelliste", layout = HomeView.class)

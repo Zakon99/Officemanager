@@ -1,9 +1,6 @@
-package com.iu.application.data.views.list;
+package com.iu.application.views.list;
 
-import com.iu.application.data.entity.Artikel;
-import com.iu.application.data.entity.Gruppe;
 import com.vaadin.flow.component.Key;
-import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -12,17 +9,8 @@ import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.data.binder.BeanValidationBinder;
-import com.vaadin.flow.data.binder.Binder;
-import org.atmosphere.interceptor.AtmosphereResourceStateRecovery;
-import org.joda.time.DateTimeField;
-import org.joda.time.DateTimeFieldType;
-import org.joda.time.DurationField;
-import org.joda.time.ReadablePartial;
 
-import java.awt.*;
 import java.util.List;
-import java.util.Locale;
 
 public class ArtikelForm extends FormLayout {
 
