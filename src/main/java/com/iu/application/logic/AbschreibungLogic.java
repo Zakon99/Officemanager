@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 public class AbschreibungLogic {
     private Artikel artikel;
     private LocalDate heute = LocalDate.now();
-    private int gesamtPreis;
+    private double gesamtPreis;
     private final String[] artikelTableColumns= {"Artikel", "Preis", "Anzahl","Preis Gesamt","Anschaffungdatum","Nutzungsdauer"};
     private final String[] abschreibungTableColumns= {"Jahr","Restabschreibungssumme","Afa 7,7%","Restbetrag Ende des Jahres"};
 

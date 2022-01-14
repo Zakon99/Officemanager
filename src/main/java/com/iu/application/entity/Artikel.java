@@ -9,10 +9,10 @@ public class Artikel {
     private Long userID;
     private String name;
     private int anzahl;
-    private int preis;
+    private double preis;
     private LocalDate kaufDatum;
 
-    public Artikel(Long userID, String name, int anzahl, int preis, LocalDate kaufDatum) {
+    public Artikel(Long userID, String name, int anzahl, double preis, LocalDate kaufDatum) {
         this.userID = userID;
         this.name = name;
         this.anzahl = anzahl;
@@ -53,11 +53,11 @@ public class Artikel {
         return kaufDatum;
     }
 
-    public int getPreis() {
+    public double getPreis() {
         return preis;
     }
 
-    public void setPreis(int preis) {
+    public void setPreis(double preis) {
         this.preis = preis;
     }
 }
