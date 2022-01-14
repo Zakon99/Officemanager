@@ -7,10 +7,10 @@ import javax.validation.constraints.NotEmpty;
 public class Artikel {
 
     @NotEmpty
-    private long UserId;
+    private long userId;
 
     @NotEmpty
-    private String name = "";
+    private String name;
 
     @NotEmpty
     private Gruppe gruppe;
@@ -19,17 +19,30 @@ public class Artikel {
     private int anzahl;
 
     @NotEmpty
-    private int preis;
+    private double preis;
 
     @DateTimeFormat
     private String kaufdatum;
 
+    public Artikel(long userId, String name, Gruppe gruppe, int anzahl, double preis, String kaufdatum) {
+        this.userId = userId;
+        this.name = name;
+        this.gruppe = gruppe;
+        this.anzahl = anzahl;
+        this.preis = preis;
+        this.kaufdatum = kaufdatum;
+    }
+
     public long getUserId() {
-        return UserId;
+        return userId;
     }
 
     public void setUserId(long userId) {
-        UserId = userId;
+        this.userId = userId;
+    }
+
+    public void setPreis(double preis) {
+        this.preis = preis;
     }
 
     public String getName() {
@@ -55,14 +68,7 @@ public class Artikel {
     public void setAnzahl(int anzahl) {
         this.anzahl = anzahl;
     }
-
-    public int getPreis() {
-        return preis;
-    }
-
-    public void setPreis(int preis) {
-        this.preis = preis;
-    }
+    
 
     public String getKaufdatum() {
         return kaufdatum;
