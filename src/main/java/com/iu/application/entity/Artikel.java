@@ -8,13 +8,15 @@ import java.util.Date;
 public class Artikel {
     private Long userID;
     private String name;
+    private Gruppe gruppe;
     private int anzahl;
     private double preis;
     private LocalDate kaufDatum;
 
-    public Artikel(Long userID, String name, int anzahl, double preis, LocalDate kaufDatum) {
+    public Artikel(Long userID, String name, Gruppe gruppe, int anzahl, double preis, LocalDate kaufDatum) {
         this.userID = userID;
         this.name = name;
+        this.gruppe = gruppe;
         this.anzahl = anzahl;
         this.preis = preis;
         this.kaufDatum = kaufDatum;
@@ -59,5 +61,13 @@ public class Artikel {
 
     public void setPreis(double preis) {
         this.preis = preis;
+    }
+
+    public Gruppe getGruppe() {
+        return gruppe;
+    }
+
+    public void setGruppe(Gruppe gruppe) {
+        this.gruppe = gruppe;
     }
 }

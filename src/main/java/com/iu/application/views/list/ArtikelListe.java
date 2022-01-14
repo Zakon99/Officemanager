@@ -46,7 +46,7 @@ ArtikelListe extends VerticalLayout {
     private void configureGrid() {
         grid.addClassNames("artikel-grid");
         grid.setSizeFull();
-        grid.setColumns("userId", "name", "gruppe", "anzahl", "preis", "kaufdatum");
+        grid.setColumns("userID", "name", "gruppe", "anzahl", "preis", "kaufDatum");
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
     }
 
