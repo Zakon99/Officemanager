@@ -12,14 +12,15 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 import java.util.Collections;
+import java.util.Set;
 
 @PageTitle("Artikelliste | Officemanager")
 @Route(value = "officemanager.com/Artikelliste", layout = HomeView.class)
-public class
-ArtikelListe extends VerticalLayout {
+public class ArtikelListe extends VerticalLayout {
     Grid<Artikel> grid = new Grid<>(Artikel.class);
     TextField filterText = new TextField();
     ArtikelForm form;
+    Set<Artikel> selectedArtikel;
 
     public ArtikelListe() {
         addClassName("list-view");
@@ -48,6 +49,10 @@ ArtikelListe extends VerticalLayout {
         grid.setSizeFull();
         grid.setColumns("userId", "name", "gruppe", "anzahl", "preis", "kaufdatum");
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
+
+        grid.addSelectionListener(event->{
+            selectedArtikel = grid.getSelectedItems();
+        });
     }
 
     private HorizontalLayout getToolbar() {
@@ -62,5 +67,8 @@ ArtikelListe extends VerticalLayout {
         return toolbar;
     }
 
-
+    //Getter & Setter
+    public Set<Artikel> getSelectedArtikel() {
+        return selectedArtikel;
+    }
 }
