@@ -1,7 +1,7 @@
 package com.iu.application.views.list;
 
 import com.iu.application.entity.Artikel;
-import com.iu.application.views.HomeView;
+import com.iu.application.views.MainLayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -14,13 +14,11 @@ import com.vaadin.flow.router.Route;
 import java.util.Collections;
 import java.util.Set;
 
-@PageTitle("Artikelliste | Officemanager")
-@Route(value = "officemanager.com/Artikelliste", layout = HomeView.class)
 public class ArtikelGrid extends VerticalLayout {
-    Grid<Artikel> grid = new Grid<>(Artikel.class);
-    TextField filterText = new TextField();
-    ArtikelForm form;
-    Set<Artikel> selectedArtikel;
+    private Grid<Artikel> grid = new Grid<>(Artikel.class);
+    private TextField filterText = new TextField();
+    private ArtikelForm form;
+    private Set<Artikel> selectedArtikel;
 
     public ArtikelGrid() {
         addClassName("list-view");
