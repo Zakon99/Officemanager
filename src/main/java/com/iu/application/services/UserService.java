@@ -5,6 +5,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -25,12 +26,10 @@ public class UserService {
     }
 
     public String getUsername(String username) throws SQLException {
-        return jdbcTemplate.query(selectUsername, new Object[]{username}, new BeanPropertyRowMapper<>(User.class)).toString();
+        return jdbcTemplate.queryForObject(selectUsername, new Object[]{username}, String.class);
     }
 
     public String getPassword(String username) throws SQLException {
-        return jdbcTemplate.query(selectPassword, new Object[]{username}, new BeanPropertyRowMapper<>(User.class)).toString();
+        return jdbcTemplate.queryForObject(selectPassword, new Object[]{username},String.class);
     }
-
-
 }

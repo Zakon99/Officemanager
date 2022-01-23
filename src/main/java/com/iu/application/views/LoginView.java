@@ -11,22 +11,25 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @PageTitle("login")
 @Route(value = "officmanager.com")
 @RouteAlias(value = "")
 public class LoginView extends VerticalLayout {
+    private final LoginLogic loginLogic;
 
-    LoginLogic loginLogic;
-    TextField usernameTextfield = new TextField();
-    PasswordField passwordTextfield = new PasswordField();
-    Button loginButton = new Button("Login");
-    Label welcomeLabel = new Label("Willkommen zu deinem Officemanager.");
-    Label statusLabel = new Label("");
-    Label headerTitel = new Label("Officemanager");
+    //Components
+    private TextField usernameTextfield = new TextField();
+    private PasswordField passwordTextfield = new PasswordField();
+    private Button loginButton = new Button("Login");
+    private Label welcomeLabel = new Label("Willkommen zu deinem Officemanager.");
+    private Label statusLabel = new Label("");
+    private Label headerTitel = new Label("Officemanager");
 
-    public LoginView() {
-        loginLogic = new LoginLogic();
+    @Autowired
+    public LoginView(LoginLogic loginLogic) {
+        this.loginLogic = loginLogic;
         //this.getStyle().set("border","6px dotted DarkOrange");
         this.getStyle().set("background-color", "#34495E");
         this.setSizeFull();

@@ -11,11 +11,14 @@ public class LoginLogic {
     private final UserService userService;
 
     @Autowired
-    public LoginLogic() {
-        userService = new UserService();
+    public LoginLogic(UserService userService) {
+        this.userService = userService;
     }
 
-    // Diese Methode überprüft, ob sich der eingebene Benutzername in der DB befindet
+    /**
+     * Diese Methode überprüft, ob sich der eingebene Benutzername in der DB befindet
+     * @param username
+     */
     public boolean userExcists(String username) {
         try {
             String databaseUsername = userService.getUsername(username);
@@ -28,7 +31,10 @@ public class LoginLogic {
         return false;
     }
 
-    // Diese Methode überprüft, ob das eingegebene Passwort korrekt ist
+    /**
+     *Diese Methode überprüft, ob das eingegebene Passwort korrekt ist
+     * @param username
+     */
     public boolean checkPassword(String username) {
         try {
             String databasePassword = userService.getPassword(username);
