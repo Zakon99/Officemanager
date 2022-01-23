@@ -1,9 +1,13 @@
 package com.iu.application.logic;
 
+import com.iu.application.entity.Artikel;
 import com.iu.application.entity.ArtikelListe;
 import com.iu.application.services.ArtikelService;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class ArtikelLogic {
@@ -18,7 +22,7 @@ public class ArtikelLogic {
         return artikelService.getUserArtiekl(userId);
     }
 
-    public void deleteArtikel(ArtikelListe artikelListe){
+    public void deleteArtikel(List<Artikel> artikelListe){
         artikelService.deleteArtikel(artikelListe);
     }
 }

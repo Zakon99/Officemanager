@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ArtikelService {
 
@@ -28,6 +30,9 @@ public class ArtikelService {
         return new ArtikelListe(jdbcTemplate.query(getUserArtikelQuerry,new Object[]{userId},new BeanPropertyRowMapper<>(Artikel.class)));
     }
 
-    public void deleteArtikel(ArtikelListe artikelListe) {
+    public void deleteArtikel(List<Artikel> artikelListe) {
+        for(Artikel artikel:artikelListe){
+            jdbcTemplate.update(deleteArtikelQuerry,new Object[]{artikel.getUserID(),artikel.getName()});
+        }
     }
 }
