@@ -7,8 +7,14 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 @PageTitle("home")
-@Route(value = "officemanager.com/home",layout = MainLayout.class)
+@Route(value = "",layout = MainLayout.class)
 public class HomeView extends VerticalLayout {
     private ArtikelGrid artikelGrid;
     private ArtikelForm artikelForm;
+
+    public HomeView() {
+        artikelGrid = new ArtikelGrid();
+
+        add(artikelGrid.getGrid());
+    }
 }

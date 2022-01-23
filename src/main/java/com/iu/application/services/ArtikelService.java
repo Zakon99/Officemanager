@@ -13,7 +13,10 @@ public class ArtikelService {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    private final String getUserArtikel="SELECT * FROM article WHERE userID = (?)";
+    //Stmt
+    private final String getUserArtikelQuerry="SELECT * FROM article WHERE userId = (?)";
+
+    private final String deleteArtikelQuerry= "DELETE FROM article WHERE userId = (?) AND name = (?)";
 
 
     /**
@@ -22,6 +25,9 @@ public class ArtikelService {
      * @return ArtikelListe
      */
     public ArtikelListe getUserArtiekl(Long userId){
-        return new ArtikelListe(jdbcTemplate.query(getUserArtikel,new Object[]{userId},new BeanPropertyRowMapper<>(Artikel.class)));
+        return new ArtikelListe(jdbcTemplate.query(getUserArtikelQuerry,new Object[]{userId},new BeanPropertyRowMapper<>(Artikel.class)));
+    }
+
+    public void deleteArtikel(ArtikelListe artikelListe) {
     }
 }

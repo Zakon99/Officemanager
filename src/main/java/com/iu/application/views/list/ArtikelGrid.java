@@ -14,18 +14,15 @@ import com.vaadin.flow.router.Route;
 import java.util.Collections;
 import java.util.Set;
 
-public class ArtikelGrid extends VerticalLayout {
+public class ArtikelGrid {
     private Grid<Artikel> grid = new Grid<>(Artikel.class);
     private TextField filterText = new TextField();
     private ArtikelForm form;
     private Set<Artikel> selectedArtikel;
 
     public ArtikelGrid() {
-        addClassName("list-view");
-        setSizeFull();
         configureGrid();
         configureForm();
-        add(getToolbar(), grid, getContent());
     }
 
     private void configureForm() {
