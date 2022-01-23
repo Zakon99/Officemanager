@@ -2,6 +2,7 @@ package com.iu.application.views.list;
 
 import com.iu.application.entity.Artikel;
 import com.iu.application.logic.AbschreibungLogic;
+import com.iu.application.views.HomeView;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -15,7 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class ArtikelForm extends FormLayout {
+public class ArtikelForm{
+    private HomeView homeView;
+
     private AbschreibungLogic abschreibungLogic;
 
     private FormLayout artieklForm = new FormLayout();
@@ -37,8 +40,9 @@ public class ArtikelForm extends FormLayout {
     private Button close = new Button("schließen");
     private Button createAbschreibung = new Button("Abschreibung erstellen");
 
-    public ArtikelForm(List<String> gruppen){
-        addClassName("artikel-form");
+    public ArtikelForm(HomeView homeView){
+        this.homeView = homeView;
+        artieklForm.setVisible(true);
         configureButtonActions();
         artieklForm.add(userId, name, anzahl, preis, kaufdatum, createButtonsLayout());
     }

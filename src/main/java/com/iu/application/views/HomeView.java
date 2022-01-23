@@ -2,6 +2,7 @@ package com.iu.application.views;
 
 import com.iu.application.views.list.ArtikelForm;
 import com.iu.application.views.list.ArtikelGrid;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -13,8 +14,15 @@ public class HomeView extends VerticalLayout {
     private ArtikelForm artikelForm;
 
     public HomeView() {
-        artikelGrid = new ArtikelGrid();
+        artikelGrid = new ArtikelGrid(this);
+        artikelForm = new ArtikelForm(this);
 
-        add(artikelGrid.getGrid());
+        HorizontalLayout content = new HorizontalLayout(artikelGrid.getGrid(), artikelForm.getArtieklForm());
+        content.setFlexGrow(2, artikelGrid.getGrid());
+        content.setFlexGrow(1, artikelForm.getArtieklForm());
+        content.addClassNames("content");
+        content.setSizeFull();
+
+        add(content);
     }
 }

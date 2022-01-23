@@ -1,6 +1,7 @@
 package com.iu.application.views.list;
 
 import com.iu.application.entity.Artikel;
+import com.iu.application.views.HomeView;
 import com.iu.application.views.MainLayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.grid.Grid;
@@ -15,33 +16,20 @@ import java.util.Collections;
 import java.util.Set;
 
 public class ArtikelGrid {
+    private HomeView homeView;
     private Grid<Artikel> grid = new Grid<>(Artikel.class);
     private TextField filterText = new TextField();
-    private ArtikelForm form;
     private Set<Artikel> selectedArtikel;
 
-    public ArtikelGrid() {
+    public ArtikelGrid(HomeView homeView) {
+        this.homeView = homeView;
         configureGrid();
-        configureForm();
-    }
-
-    private void configureForm() {
-        form = new ArtikelForm(Collections.emptyList());
-        form.setWidth("25em");
-    }
-
-    private Component getContent() {
-        HorizontalLayout content = new HorizontalLayout(grid, form);
-        content.setFlexGrow(2, grid);
-        content.setFlexGrow(1, form);
-        content.addClassNames("content");
-        content.setSizeFull();
-        return content;
     }
 
     private void configureGrid() {
         grid.addClassNames("artikel-grid");
         grid.setSizeFull();
+        grid.setVisible(true);
         grid.setColumns("userID", "name", "gruppe", "anzahl", "preis", "kaufDatum");
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
