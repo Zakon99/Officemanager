@@ -10,6 +10,8 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.sql.SQLException;
+
 @PageTitle("home")
 @Route(value = "",layout = MainLayout.class)
 public class HomeView extends VerticalLayout implements HasUrlParameter<String> {
@@ -43,7 +45,11 @@ public class HomeView extends VerticalLayout implements HasUrlParameter<String> 
             UI.getCurrent().getPage().reload();
         }else{
             //Get User Informations and User Playlist
-            user = loginLogic.getUser(Long.valueOf(parameter));
+            try {
+                user = loginLogic.getUser(Long.valueOf(parameter));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             //Set Items on grid
         }
 

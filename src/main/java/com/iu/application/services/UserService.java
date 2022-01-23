@@ -19,6 +19,7 @@ public class UserService {
 
     private static final String selectUsername = "SELECT username FROM officemanager.user WHERE username = (?)";
     private static final String selectPassword = "SELECT pw FROM officemanager.user WHERE username = (?)";
+    private static final String selectUser = "SELECT * FROM officemanager.user WHERE id = (?)";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -46,5 +47,15 @@ public class UserService {
      */
     public String getPassword(String username) throws SQLException {
         return jdbcTemplate.queryForObject(selectPassword, new Object[]{username},String.class);
+    }
+
+    /**
+     *
+     * @param id
+     * @return alle Daten des Users in einem Userobjekt
+     * @throws SQLException
+     */
+    public User selectUser(Long id) throws SQLException {
+        return jdbcTemplate.queryForObject(selectPassword, new Object[]{id},new BeanPropertyRowMapper<>(User.class));
     }
 }

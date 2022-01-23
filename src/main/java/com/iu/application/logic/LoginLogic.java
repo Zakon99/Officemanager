@@ -1,5 +1,6 @@
 package com.iu.application.logic;
 
+import com.iu.application.entity.User;
 import com.iu.application.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,5 +51,15 @@ public class LoginLogic {
             e.printStackTrace();
         }
         return false;
+    }
+
+    /**
+     *
+     * @param id
+     * @return Userobjekt aus der Datenbank
+     * @throws SQLException
+     */
+    public User getUser(Long id) throws SQLException {
+        return userService.selectUser(id);
     }
 }
