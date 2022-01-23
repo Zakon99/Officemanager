@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
 
+/**
+ * @author Dominik Lavall
+ */
 @RestController
 public class LoginLogic {
     private final UserService userService;
@@ -18,6 +21,7 @@ public class LoginLogic {
     /**
      * Diese Methode überprüft, ob sich der eingebene Benutzername in der DB befindet
      * @param username
+     * @return true, wenn Benutzer vorhanden ist
      */
     public boolean userExcists(String username) {
         try {
@@ -34,6 +38,7 @@ public class LoginLogic {
     /**
      *Diese Methode überprüft, ob das eingegebene Passwort korrekt ist
      * @param username
+     * @return true, wenn das Passwort korrekt ist
      */
     public boolean checkPassword(String username) {
         try {

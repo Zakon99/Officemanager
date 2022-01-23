@@ -13,6 +13,9 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * @author Dominik Lavall
+ */
 @PageTitle("login")
 @Route(value = "officmanager.com")
 @RouteAlias(value = "")
@@ -50,7 +53,10 @@ public class LoginView extends VerticalLayout {
         });
     }
 
-    // Diese Methode erstellt den Header-Container
+    /**
+     * Diese Methode erstellt den Header-Container
+     * @return Layout für den Header
+     */
     private HorizontalLayout addHeader() {
         HorizontalLayout headerLayout = new HorizontalLayout(headerTitel);
         //headerLayout.getStyle().set("border", "6px dotted Yellow");
@@ -66,7 +72,10 @@ public class LoginView extends VerticalLayout {
         return headerLayout;
     }
 
-    // Diese Methode erstellt den Welcome-Container
+    /**
+     * Diese Methode erstellt den Welcome-Container
+     * @return Layout für das Welcomepanel
+     */
     private HorizontalLayout addWelcomePanel() {
         HorizontalLayout welcomeLayout = new HorizontalLayout(welcomeLabel);
         welcomeLabel.getStyle().set("font", "Arial");
@@ -81,7 +90,10 @@ public class LoginView extends VerticalLayout {
         return welcomeLayout;
     }
 
-    // Diese Methode erstellt den Login-Container
+    /**
+     * Diese Methode erstellt den Login-Container
+     * @return Layout für das Loginpanel
+     */
     private VerticalLayout addLoginPanel() {
         VerticalLayout loginLayout = new VerticalLayout(statusLabel, usernameTextfield, passwordTextfield, loginButton);
         loginLayout.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
@@ -104,7 +116,10 @@ public class LoginView extends VerticalLayout {
         return loginLayout;
     }
 
-    // Diese Methode erstellt den Footer-Container
+    /**
+     * Diese Methode erstellt den Footer-Container
+     * @return Layout für den Footer
+     */
     private HorizontalLayout addFooter() {
         HorizontalLayout footerLayout = new HorizontalLayout();
         //footerLayout.getStyle().set("border", "6px dotted Violet");
@@ -115,6 +130,5 @@ public class LoginView extends VerticalLayout {
         footerLayout.setAlignItems(Alignment.CENTER);
         return footerLayout;
     }
-
 
 }

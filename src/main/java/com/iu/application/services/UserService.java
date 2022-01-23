@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 
+/**
+ * @author Dominik Lavall
+ */
 
 @Service
 public class UserService {
@@ -25,10 +28,22 @@ public class UserService {
         jdbcTemplate = new JdbcTemplate(dbConfig.dataSource());
     }
 
+    /**
+     *
+     * @param username
+     * @return Username als String
+     * @throws SQLException
+     */
     public String getUsername(String username) throws SQLException {
         return jdbcTemplate.queryForObject(selectUsername, new Object[]{username}, String.class);
     }
 
+    /**
+     *
+     * @param username
+     * @return Passwort als String
+     * @throws SQLException
+     */
     public String getPassword(String username) throws SQLException {
         return jdbcTemplate.queryForObject(selectPassword, new Object[]{username},String.class);
     }
