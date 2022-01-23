@@ -16,30 +16,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 public class ArtikelForm extends FormLayout {
-
     private AbschreibungLogic abschreibungLogic;
 
+    private FormLayout artieklForm = new FormLayout();
+
     @Autowired
-    private ArtikelListe artikelListe;
+    private ArtikelGrid artikelGrid;
 
-    NumberField userId = new NumberField("User Id");
-    TextField name = new TextField("Name");
-    ComboBox<String> gruppen = new ComboBox<>("Gruppen");
-    TextField anzahl = new TextField("Anzahl");
-    NumberField preis = new NumberField("Preis");
-    DatePicker kaufdatum = new DatePicker("Kaufdatum");
+    //Fields
+    private NumberField userId = new NumberField("User Id");
+    private TextField name = new TextField("Name");
+    private ComboBox<String> gruppen = new ComboBox<>("Gruppen");
+    private TextField anzahl = new TextField("Anzahl");
+    private NumberField preis = new NumberField("Preis");
+    private DatePicker kaufdatum = new DatePicker("Kaufdatum");
 
-
-    Button save = new Button("speichern");
-    Button delete = new Button("löschen");
-    Button close = new Button("schließen");
-    Button createAbschreibung = new Button("Abschreibung erstellen");
+    //Buttons
+    private Button save = new Button("speichern");
+    private Button delete = new Button("löschen");
+    private Button close = new Button("schließen");
+    private Button createAbschreibung = new Button("Abschreibung erstellen");
 
     public ArtikelForm(List<String> gruppen){
         addClassName("artikel-form");
         configureButtonActions();
-        add(userId, name, anzahl, preis, kaufdatum,
-            createButtonsLayout());
+        artieklForm.add(userId, name, anzahl, preis, kaufdatum, createButtonsLayout());
     }
 
     private HorizontalLayout createButtonsLayout() {
@@ -60,10 +61,14 @@ public class ArtikelForm extends FormLayout {
     private void configureButtonActions(){
         createAbschreibung.addClickListener(buttonClickEvent -> {
             abschreibungLogic = new AbschreibungLogic();
-            for(Artikel artikel : artikelListe.getSelectedArtikel()){
+            for(Artikel artikel : artikelGrid.getSelectedArtikel()){
                 abschreibungLogic.createAbschreibung(artikel);
             }
         });
     }
 
+    //Getter & Setter
+    public FormLayout getArtieklForm() {
+        return artieklForm;
+    }
 }

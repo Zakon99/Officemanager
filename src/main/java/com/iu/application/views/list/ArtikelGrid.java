@@ -16,13 +16,13 @@ import java.util.Set;
 
 @PageTitle("Artikelliste | Officemanager")
 @Route(value = "officemanager.com/Artikelliste", layout = HomeView.class)
-public class ArtikelListe extends VerticalLayout {
+public class ArtikelGrid extends VerticalLayout {
     Grid<Artikel> grid = new Grid<>(Artikel.class);
     TextField filterText = new TextField();
     ArtikelForm form;
     Set<Artikel> selectedArtikel;
 
-    public ArtikelListe() {
+    public ArtikelGrid() {
         addClassName("list-view");
         setSizeFull();
         configureGrid();
@@ -70,5 +70,9 @@ public class ArtikelListe extends VerticalLayout {
     //Getter & Setter
     public Set<Artikel> getSelectedArtikel() {
         return selectedArtikel;
+    }
+
+    public Grid<Artikel> getGrid() {
+        return grid;
     }
 }

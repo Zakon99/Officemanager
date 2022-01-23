@@ -1,6 +1,6 @@
 package com.iu.application.views;
 
-import com.iu.application.views.list.ArtikelListe;
+import com.iu.application.views.list.ArtikelGrid;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
@@ -45,7 +45,7 @@ public class HomeView extends AppLayout {
     }
 
     private void createDrawer() {
-        RouterLink listLink = new RouterLink("Artikel", ArtikelListe.class);
+        RouterLink listLink = new RouterLink("Artikel", ArtikelGrid.class);
         listLink.setHighlightCondition(HighlightConditions.sameLocation());
 
         addToDrawer(new VerticalLayout(
