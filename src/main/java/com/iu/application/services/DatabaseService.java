@@ -13,11 +13,6 @@ import java.sql.SQLException;
 @Service
 public class DatabaseService {
 
-    private static final String driverClassName = "com.mysql.cj.jdbc.Driver";
-    private static final String url = "jdbc:mysql://localhost/officemanager";
-    private static final String dbUsername = "admin";
-    private static final String dbPassword = "admin";
-
     private static final String selectUsername = "SELECT username FROM officemanager.user WHERE username = (?)";
     private static final String selectPassword = "SELECT pw FROM officemanager.user WHERE username = (?)";
 
