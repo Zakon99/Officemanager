@@ -2,6 +2,7 @@ package com.iu.application.entity;
 
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Artikel {
     private Long userID;
@@ -11,6 +12,8 @@ public class Artikel {
     private double preis;
     private LocalDate kaufDatum;
 
+    private List<Artikel> artikelListe;
+
     public Artikel(Long userID, String name, Gruppe gruppe, int anzahl, double preis, LocalDate kaufDatum) {
         this.userID = userID;
         this.name = name;
@@ -18,6 +21,13 @@ public class Artikel {
         this.anzahl = anzahl;
         this.preis = preis;
         this.kaufDatum = kaufDatum;
+    }
+
+    public Artikel() {
+    }
+
+    public Artikel(List<Artikel> artikelListe) {
+        this.artikelListe = artikelListe;
     }
 
     public void setKaufDatum(LocalDate kaufDatum) {
