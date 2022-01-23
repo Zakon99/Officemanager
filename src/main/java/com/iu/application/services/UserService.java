@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 
 @Service
-public class DatabaseService {
+public class UserService {
 
     private static final String selectUsername = "SELECT username FROM officemanager.user WHERE username = (?)";
     private static final String selectPassword = "SELECT pw FROM officemanager.user WHERE username = (?)";
@@ -19,7 +19,7 @@ public class DatabaseService {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public DatabaseService() {
+    public UserService() {
         DBConfig dbConfig = new DBConfig();
         jdbcTemplate = new JdbcTemplate(dbConfig.dataSource());
     }
