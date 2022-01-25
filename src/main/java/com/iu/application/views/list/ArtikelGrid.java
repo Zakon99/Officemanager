@@ -30,7 +30,7 @@ public class ArtikelGrid {
         grid.addClassNames("artikel-grid");
         grid.setSizeFull();
         grid.setVisible(true);
-        grid.setColumns("userID", "name", "gruppe", "anzahl", "preis", "kaufDatum");
+        grid.setColumns("name", "anzahl", "preis", "kaufDatum");
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
         grid.addSelectionListener(event->{

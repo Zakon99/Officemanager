@@ -1,7 +1,10 @@
 package com.iu.application.views;
 
+import com.iu.application.entity.Artikel;
+import com.iu.application.entity.ArtikelListe;
 import com.iu.application.entity.User;
 import com.iu.application.logic.LoginLogic;
+import com.iu.application.services.ArtikelService;
 import com.iu.application.views.list.ArtikelForm;
 import com.iu.application.views.list.ArtikelGrid;
 import com.vaadin.flow.component.UI;
@@ -11,6 +14,7 @@ import com.vaadin.flow.router.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.SQLException;
+import java.util.List;
 
 @PageTitle("home")
 @Route(value = "home",layout = MainLayout.class)
@@ -18,22 +22,26 @@ public class HomeView extends VerticalLayout implements HasUrlParameter<String> 
     private User user;
 
     private final LoginLogic loginLogic;
+    private final ArtikelService artikelService;
 
     private ArtikelGrid artikelGrid;
     private ArtikelForm artikelForm;
 
     @Autowired
-    public HomeView(LoginLogic loginLogic) {
+    public HomeView(LoginLogic loginLogic, ArtikelService artikelService) {
         this.loginLogic = loginLogic;
+        this.artikelService = artikelService;
+
         artikelGrid = new ArtikelGrid(this);
         artikelForm = new ArtikelForm(this);
 
-        HorizontalLayout content = new HorizontalLayout(artikelGrid.getGrid(), artikelForm.getArtieklForm());
+        VerticalLayout content = new VerticalLayout(artikelGrid.getGrid(), artikelForm.getArtieklForm());
         content.setFlexGrow(2, artikelGrid.getGrid());
         content.setFlexGrow(1, artikelForm.getArtieklForm());
         content.addClassNames("content");
         content.setSizeFull();
 
+        this.setSizeFull();
         add(content);
     }
 
@@ -44,13 +52,7 @@ public class HomeView extends VerticalLayout implements HasUrlParameter<String> 
             UI.getCurrent().navigate(LoginView.class);
             UI.getCurrent().getPage().reload();
         }else{
-            //Get User Informations and User Playlist
-            try {
-                user = loginLogic.getUser(Long.valueOf(parameter));
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            //Set Items on grid
+            artikelGrid.getGrid().setItems(artikelService.getUserArtiekl(Long.valueOf(parameter)).getArtikelListe());
         }
 
     }

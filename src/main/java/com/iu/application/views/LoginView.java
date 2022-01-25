@@ -45,7 +45,7 @@ public class LoginView extends VerticalLayout {
             String username = usernameTextfield.getValue();
             String password = passwordTextfield.getValue();
             if (loginLogic.userExcists(username) && loginLogic.checkPassword(password)) {
-                UI.getCurrent().navigate("HomeView");
+                UI.getCurrent().navigate("home/"+"1");
             } else {
                 statusLabel.setText("Benutzername oder Passwort sind falsch.");
             }
