@@ -62,7 +62,7 @@ public class ArtikelForm{
     private void configureButtonActions(){
         delete.addClickListener(clickEvent -> {
            artikelLogic.deleteArtikel(homeView.getArtikelGrid().getSelectedArtikel());
-           homeView.getArtikelGrid().getGrid().getDataProvider().refreshAll();
+           //TODO homeView.getArtikelGrid().getGrid().getDataProvider().refreshAll();
         });
 
         createAbschreibung.addClickListener(buttonClickEvent -> {

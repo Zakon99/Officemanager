@@ -12,8 +12,6 @@ public class Artikel {
     private LocalDate kaufDatum;
     private String mitarbeiterName;
 
-    private List<Artikel> artikelListe;
-
     public Artikel(Long userID, String name, int anzahl, double preis, LocalDate kaufDatum) {
         this.userID = userID;
         this.name = name;
@@ -23,14 +21,6 @@ public class Artikel {
     }
 
     public Artikel() {
-    }
-
-    public Artikel(List<Artikel> artikelListe) {
-        this.artikelListe = artikelListe;
-    }
-
-    public void setKaufDatum(LocalDate kaufDatum) {
-        this.kaufDatum = kaufDatum;
     }
 
     //Getter&Setter
@@ -76,5 +66,9 @@ public class Artikel {
 
     public void setMitarbeiterName(String mitarbeiterName) {
         this.mitarbeiterName = mitarbeiterName;
+    }
+
+    public void setKaufDatum(LocalDate kaufDatum) {
+        this.kaufDatum = kaufDatum;
     }
 }

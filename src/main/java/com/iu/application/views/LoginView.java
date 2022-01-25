@@ -120,7 +120,6 @@ public class LoginView extends VerticalLayout {
      */
     private HorizontalLayout addFooter() {
         HorizontalLayout footerLayout = new HorizontalLayout();
-        //footerLayout.getStyle().set("border", "6px dotted Violet");
         footerLayout.getStyle().set("background-color", "#17202A");
         footerLayout.setJustifyContentMode(JustifyContentMode.END);
         footerLayout.setHeight("20%");
