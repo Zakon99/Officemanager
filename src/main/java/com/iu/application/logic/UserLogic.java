@@ -11,11 +11,11 @@ import java.sql.SQLException;
  * @author Dominik Lavall
  */
 @RestController
-public class LoginLogic {
+public class UserLogic {
     private final UserService userService;
 
     @Autowired
-    public LoginLogic(UserService userService) {
+    public UserLogic(UserService userService) {
         this.userService = userService;
     }
 

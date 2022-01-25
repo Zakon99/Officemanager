@@ -7,7 +7,9 @@ import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class ArtikelLogic {
@@ -22,7 +24,7 @@ public class ArtikelLogic {
         return artikelService.getUserArtiekl(userId);
     }
 
-    public void deleteArtikel(List<Artikel> artikelListe){
+    public void deleteArtikel(Set<Artikel> artikelListe){
         artikelService.deleteArtikel(artikelListe);
     }
 }

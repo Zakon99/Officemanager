@@ -2,26 +2,20 @@ package com.iu.application.views.list;
 
 import com.iu.application.entity.Artikel;
 import com.iu.application.views.HomeView;
-import com.iu.application.views.MainLayout;
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
-import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.router.Route;
 
-import java.util.Collections;
 import java.util.Set;
 
-public class ArtikelGrid {
+public class EmployeeGrid {
     private HomeView homeView;
     private Grid<Artikel> grid = new Grid<>(Artikel.class);
     private TextField filterText = new TextField();
     private Set<Artikel> selectedArtikel;
 
-    public ArtikelGrid(HomeView homeView) {
+    public EmployeeGrid(HomeView homeView) {
         this.homeView = homeView;
         configureGrid();
     }
@@ -30,7 +24,7 @@ public class ArtikelGrid {
         grid.addClassNames("artikel-grid");
         grid.setSizeFull();
         grid.setVisible(true);
-        grid.setColumns("name", "anzahl", "preis", "kaufDatum");
+        grid.setColumns("name", "anzahl", "preis", "kaufDatum","mitarbeiterName");
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
         grid.setSelectionMode(Grid.SelectionMode.MULTI);
 

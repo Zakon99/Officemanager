@@ -1,6 +1,6 @@
 package com.iu.application.views;
 
-import com.iu.application.logic.LoginLogic;
+import com.iu.application.logic.UserLogic;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Label;
@@ -10,7 +10,6 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouteAlias;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -19,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @PageTitle("login")
 @Route(value = "")
 public class LoginView extends VerticalLayout {
-    private final LoginLogic loginLogic;
+    private final UserLogic loginLogic;
 
     //Components
     private TextField usernameTextfield = new TextField();
@@ -30,7 +29,7 @@ public class LoginView extends VerticalLayout {
     private Label headerTitel = new Label("Officemanager");
 
     @Autowired
-    public LoginView(LoginLogic loginLogic) {
+    public LoginView(UserLogic loginLogic) {
         this.loginLogic = loginLogic;
         //this.getStyle().set("border","6px dotted DarkOrange");
         this.getStyle().set("background-color", "#34495E");
