@@ -17,8 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author Dominik Lavall
  */
 @PageTitle("login")
-@Route(value = "officmanager.com")
-@RouteAlias(value = "")
+@Route(value = "")
 public class LoginView extends VerticalLayout {
     private final LoginLogic loginLogic;
 

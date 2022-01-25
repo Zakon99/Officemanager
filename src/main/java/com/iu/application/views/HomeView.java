@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.sql.SQLException;
 
 @PageTitle("home")
-@Route(value = "",layout = MainLayout.class)
+@Route(value = "home",layout = MainLayout.class)
 public class HomeView extends VerticalLayout implements HasUrlParameter<String> {
     private User user;
 
