@@ -1,6 +1,7 @@
 package com.iu.application.views;
 
 import com.iu.application.views.list.ArtikelGrid;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
@@ -34,9 +35,14 @@ public class MainLayout extends AppLayout {
         H1 logo = new H1("Officemanager");
         logo.addClassNames("text-l", "m-m");
 
+        Button logout = new Button("Logout");
+        logout.addClickListener(event -> {
+            UI.getCurrent().navigate(LoginView.class);
+        });
+
         Button kontakt = new Button("Kontakt");
 
-        HorizontalLayout header = new HorizontalLayout(new DrawerToggle(), logo, kontakt);
+        HorizontalLayout header = new HorizontalLayout(new DrawerToggle(), logo, logout, kontakt);
 
         header.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
         header.expand(logo);
