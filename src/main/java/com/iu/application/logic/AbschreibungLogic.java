@@ -12,6 +12,10 @@ import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.stream.Stream;
 
+/**
+ * Klasse für die Logic der Abschreibung
+ * @author  Mirsad Dzananovic
+ */
 public class AbschreibungLogic {
     private Artikel artikel;
     //Variables
@@ -40,12 +44,12 @@ public class AbschreibungLogic {
      * @return Ja / Nein
      */
     private Boolean checkKaufDatum(){
-        return artikel.getKaufDatum().isBefore(heute.minusYears(1))? true:false;
+        return artikel.getKaufdatum().isBefore(heute.minusYears(1))? true:false;
     }
 
     /**
      * Überprüft ob der Preis hoch genug für eine Abschreibung ist.
-     * @return
+     * @return true = preis ist höher als 800€
      */
     private boolean checkPreis() {
         gesamtPreis = artikel.getAnzahl()*artikel.getPreis();
@@ -56,39 +60,42 @@ public class AbschreibungLogic {
      * Erstellt das Dokument für die Abschreibung.
      */
     private void createAbschreibungPDF() {
+        //Erstellung des Dokuments
         Document document = new Document();
         try {
             PdfWriter.getInstance(document, new FileOutputStream("c:/temp/Abschreibung_"+artikel.getName()+".pdf"));
+            document.open();
         } catch (DocumentException e) {
             e.printStackTrace();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        document.open();
-
-        //Header PDF Dokument
-        Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 25, BaseColor.BLACK);
-        Chunk header = new Chunk("Abschreibung für Artikel:"+artikel.getName(), font);
-
-        //Body PDF Dokument
-        PdfPTable artikelTabelle = createTabelle(6,artikelTableColumns,false);
-        PdfPTable abschreibungsTabelle = createTabelle(4,abschreibungTableColumns,true);
 
         //Hinzufügen der Componenten
         try {
-            document.add(header);
+            document.add(createPdfHeader());
             document.add(new Phrase("\n"));
-            document.add(artikelTabelle);
+            document.add(createTabelle(6,artikelTableColumns,false));
             document.add(new Phrase("\n"));
-            document.add(abschreibungsTabelle);
+            document.add(createTabelle(4,abschreibungTableColumns,true));
         } catch (DocumentException e) {
             e.printStackTrace();
+        }finally {
+            document.close();
         }
-        document.close();
     }
 
     /**
-     * Ersetllet eine Tabelle für Artikel oder eine Abschreibung
+     * Erstellt den PDF Header
+     * @return header
+     */
+    private Chunk createPdfHeader(){
+        Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 25, BaseColor.BLACK);
+        return new Chunk("Abschreibung für Artikel:"+artikel.getName(), font);
+    }
+
+    /**
+     * Ersetllet eine Tabelle für den Artikel oder eine Abschreibung
      * @param columnAnzahl
      * @param tableCoumns
      * @param isAbschreibungsTabelle
@@ -131,7 +138,7 @@ public class AbschreibungLogic {
         table.addCell(String.valueOf(artikel.getPreis())+"€");
         table.addCell(String.valueOf(artikel.getAnzahl()));
         table.addCell(String.valueOf(gesamtPreis)+"€");
-        table.addCell(String.valueOf(artikel.getKaufDatum()));
+        table.addCell(String.valueOf(artikel.getKaufdatum()));
         table.addCell("13 Jahre");
     }
 

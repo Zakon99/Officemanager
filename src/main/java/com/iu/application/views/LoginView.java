@@ -13,12 +13,13 @@ import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
+ * Klasse für die LoginView
  * @author Dominik Lavall
  */
 @PageTitle("login")
 @Route(value = "")
 public class LoginView extends VerticalLayout {
-    private final UserLogic loginLogic;
+    private final UserLogic userLogic;
 
     //Components
     private TextField usernameTextfield = new TextField();
@@ -29,9 +30,16 @@ public class LoginView extends VerticalLayout {
     private Label headerTitel = new Label("Officemanager");
 
     @Autowired
-    public LoginView(UserLogic loginLogic) {
-        this.loginLogic = loginLogic;
-        //this.getStyle().set("border","6px dotted DarkOrange");
+    public LoginView(UserLogic userLogic) {
+        this.userLogic = userLogic;
+        configureStyles();
+        configureButtonActions();
+    }
+
+    /**
+     * Konfiguriert die Styles der LoginView
+     */
+    private void configureStyles(){
         this.getStyle().set("background-color", "#34495E");
         this.setSizeFull();
         this.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
@@ -39,11 +47,16 @@ public class LoginView extends VerticalLayout {
         this.add(addHeader(), addWelcomePanel(), addLoginPanel(), addFooter());
         this.setPadding(false);
         this.setSpacing(false);
+    }
 
+    /**
+     * Konfigurierung der Button Actions
+     */
+    private void configureButtonActions(){
         loginButton.addClickListener(event -> {
             String username = usernameTextfield.getValue();
             String password = passwordTextfield.getValue();
-            if (loginLogic.userExcists(username) && loginLogic.checkPassword(password)) {
+            if (userLogic.checkIfUserExcists(username) && userLogic.checkPassword(password)) {
                 UI.getCurrent().navigate("home/"+"1");
             } else {
                 statusLabel.setText("Benutzername oder Passwort sind falsch.");
@@ -57,7 +70,6 @@ public class LoginView extends VerticalLayout {
      */
     private HorizontalLayout addHeader() {
         HorizontalLayout headerLayout = new HorizontalLayout(headerTitel);
-        //headerLayout.getStyle().set("border", "6px dotted Yellow");
         headerLayout.getStyle().set("background-color", "#17202A");
         headerLayout.setJustifyContentMode(JustifyContentMode.START);
         headerLayout.setHeight("10%");

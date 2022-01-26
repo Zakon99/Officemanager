@@ -1,18 +1,18 @@
-package com.iu.application.views.list;
+package com.iu.application.views.components;
 
 import com.iu.application.entity.Artikel;
 import com.iu.application.views.HomeView;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.data.value.ValueChangeMode;
 
 import java.util.Set;
 
+/**
+ * Klasse für die EmployeeGrid
+ * @author Mirsad Dzananovic
+ */
 public class EmployeeGrid {
     private HomeView homeView;
     private Grid<Artikel> grid = new Grid<>(Artikel.class);
-    private TextField filterText = new TextField();
     private Set<Artikel> selectedArtikel;
 
     public EmployeeGrid(HomeView homeView) {
@@ -20,29 +20,26 @@ public class EmployeeGrid {
         configureGrid();
     }
 
+    /**
+     * Konfiguriert das EmployeeGrid
+     */
     private void configureGrid() {
         grid.addClassNames("artikel-grid");
         grid.setSizeFull();
         grid.setVisible(true);
-        grid.setColumns("name", "anzahl", "preis", "kaufDatum","mitarbeiterName");
+        grid.setColumns("name", "anzahl", "preis", "kaufdatum","mitarbeiterName");
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
         grid.setSelectionMode(Grid.SelectionMode.MULTI);
+        configureComponents();
+    }
 
+    /**
+     * Konfiguriert das verhalten der Components
+     */
+    private void configureComponents(){
         grid.addSelectionListener(event->{
             selectedArtikel = grid.getSelectedItems();
         });
-    }
-
-    private HorizontalLayout getToolbar() {
-        filterText.setPlaceholder("Filtern");
-        filterText.setClearButtonVisible(true);
-        filterText.setValueChangeMode(ValueChangeMode.LAZY);
-
-        //Button addArtikelButton = new Button("Artikel hinzufügen...");
-
-        HorizontalLayout toolbar = new HorizontalLayout(filterText);
-        toolbar.addClassName("toolbar");
-        return toolbar;
     }
 
     //Getter & Setter

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.sql.SQLException;
 
 /**
+ * Klasse zum verwalten der Logiken für den User
  * @author Dominik Lavall
  */
 @RestController
@@ -24,7 +25,7 @@ public class UserLogic {
      * @param username
      * @return true, wenn Benutzer vorhanden ist
      */
-    public boolean userExcists(String username) {
+    public boolean checkIfUserExcists(String username) {
         try {
             String databaseUsername = userService.getUsername(username);
             if (username.equals(databaseUsername)) {
@@ -51,15 +52,5 @@ public class UserLogic {
             e.printStackTrace();
         }
         return false;
-    }
-
-    /**
-     *
-     * @param id
-     * @return Userobjekt aus der Datenbank
-     * @throws SQLException
-     */
-    public User getUser(Long id) throws SQLException {
-        return userService.selectUser(id);
     }
 }

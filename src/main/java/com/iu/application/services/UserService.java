@@ -11,15 +11,17 @@ import org.springframework.stereotype.Service;
 import java.sql.SQLException;
 
 /**
+ * Klasse für Datenbankabfragen im bezug auf ein User
  * @author Dominik Lavall
  */
 
 @Service
 public class UserService {
 
+    //Stmt
     private static final String selectUsername = "SELECT username FROM officemanager.user WHERE username = (?)";
+
     private static final String selectPassword = "SELECT pw FROM officemanager.user WHERE username = (?)";
-    private static final String selectUser = "SELECT * FROM officemanager.user WHERE id = (?)";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
