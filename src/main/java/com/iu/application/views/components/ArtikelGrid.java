@@ -3,17 +3,21 @@ package com.iu.application.views.components;
 import com.iu.application.entity.Artikel;
 import com.iu.application.views.HomeView;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 
 import java.util.Set;
 
+/**
+ * Klasse für ArtikelGrid
+ * @author Hari Rait
+ */
 public class ArtikelGrid {
     private HomeView homeView;
     private Grid<Artikel> grid = new Grid<>(Artikel.class);
     private Set<Artikel> selectedArtikel;
-    private Set<Artikel> artikel;
 
     public ArtikelGrid(HomeView homeView) {
         this.homeView = homeView;
@@ -31,10 +35,6 @@ public class ArtikelGrid {
         grid.addSelectionListener(event->{
             selectedArtikel = grid.getSelectedItems();
         });
-    }
-
-    public Set<Artikel> getArtikel() {
-        return artikel;
     }
 
     //Getter & Setter

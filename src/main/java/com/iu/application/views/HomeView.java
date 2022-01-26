@@ -27,6 +27,8 @@ public class HomeView extends VerticalLayout implements HasUrlParameter<String> 
     private ArtikelForm artikelForm;
     private EmployeeGrid employeeGrid;
     private Label statusLabel = new Label();
+    private Label artikelGridHeader = new Label("Büroartikel:");
+    private Label employeeGridHeader = new Label("Mitarbeiter Artikel:");
 
     @Autowired
     public HomeView(UserLogic userLogic, ArtikelLogic artikelLogic) {
@@ -63,7 +65,8 @@ public class HomeView extends VerticalLayout implements HasUrlParameter<String> 
      * @return Vollständiges Layout
      */
     private VerticalLayout configureLayouts(){
-        HorizontalLayout grids = new HorizontalLayout(artikelGrid.getGrid(), employeeGrid.getGrid());
+        HorizontalLayout grids = new HorizontalLayout(new VerticalLayout(artikelGridHeader,artikelGrid.getGrid())
+                , new VerticalLayout(employeeGridHeader,employeeGrid.getGrid()));
         grids.setFlexGrow(1, artikelGrid.getGrid());
         grids.setFlexGrow(1, employeeGrid.getGrid());
         grids.setSizeFull();
