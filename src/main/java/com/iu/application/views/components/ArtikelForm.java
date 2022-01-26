@@ -1,6 +1,5 @@
 package com.iu.application.views.components;
 
-import com.github.jknack.handlebars.internal.lang3.ObjectUtils;
 import com.iu.application.entity.Artikel;
 import com.iu.application.logic.AbschreibungLogic;
 import com.iu.application.logic.ArtikelLogic;
@@ -14,8 +13,6 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
-
-import javax.validation.constraints.Null;
 
 /**
  * Klasse für die erstellung der ArtikelForm
@@ -34,7 +31,7 @@ public class ArtikelForm{
     private DatePicker kaufdatum = new DatePicker("Kaufdatum");
     private TextField employeeName = new TextField("Mitarbeiter Name");
     //Buttons
-    private Button save = new Button("Hinzufügen");
+    private Button add = new Button("Hinzufügen");
     private Button delete = new Button("Löschen");
     private Button transferToEmployee = new Button("Mitarbeiter überschreiben");
     private Button createAbschreibung = new Button("Abschreibung erstellen");
@@ -60,15 +57,15 @@ public class ArtikelForm{
      * @return Layout für Buttons
      */
     private HorizontalLayout createButtonsLayout() {
-        save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        add.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         delete.addThemeVariants(ButtonVariant.LUMO_ERROR);
         transferToEmployee.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         createAbschreibung.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
 
-        save.addClickShortcut(Key.ENTER);
+        add.addClickShortcut(Key.ENTER);
         transferToEmployee.addClickShortcut(Key.ESCAPE);
 
-        return new HorizontalLayout(save, delete, transferToEmployee,createAbschreibung);
+        return new HorizontalLayout(add, delete, transferToEmployee,createAbschreibung);
     }
 
     /**
@@ -98,13 +95,14 @@ public class ArtikelForm{
                 }
                 statusLabel.setVisible(false);
                 homeView.getEmployeeGrid().getGrid().setItems(homeView.getArtikelGrid().getSelectedArtikel());
+                employeeName.setValue("");
             }else{
                 statusLabel.setVisible(true);
                 statusLabel.setText("Bitte gebe einen Mitarbeitername an.");
             }
         });
 
-        save.addClickListener(buttonClickEvent -> {
+        add.addClickListener(buttonClickEvent -> {
             Label formstatusLabel = homeView.getStatusLabel();
             if (!artikel_name.getValue().isEmpty() && !anzahl.getValue().isEmpty() && preis.getValue() != null && kaufdatum.getValue() != null) {
                 artikelLogic.saveArtikel(new Artikel(1L, artikel_name.getValue(), Integer.valueOf(anzahl.getValue()), Double.valueOf(preis.getValue()), kaufdatum.getValue()));
