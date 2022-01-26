@@ -20,11 +20,16 @@ public class ArtikelLogic {
         this.artikelService = artikelService;
     }
 
-    public ArtikelListe getUserArtikel(long userId){
+    public ArtikelListe getUserArtikel(long userId) {
         return artikelService.getUserArtiekl(userId);
     }
 
-    public void deleteArtikel(Set<Artikel> artikelListe){
+    public void deleteArtikel(Set<Artikel> artikelListe) {
         artikelService.deleteArtikel(artikelListe);
     }
+
+    public void saveArtikel(Artikel artikel){
+        artikelService.saveArtikel(artikel);
+    }
+
 }

@@ -12,7 +12,6 @@ import java.util.Set;
 public class EmployeeGrid {
     private HomeView homeView;
     private Grid<Artikel> grid = new Grid<>(Artikel.class);
-    private TextField filterText = new TextField();
     private Set<Artikel> selectedArtikel;
 
     public EmployeeGrid(HomeView homeView) {
@@ -33,17 +32,6 @@ public class EmployeeGrid {
         });
     }
 
-    private HorizontalLayout getToolbar() {
-        filterText.setPlaceholder("Filtern");
-        filterText.setClearButtonVisible(true);
-        filterText.setValueChangeMode(ValueChangeMode.LAZY);
-
-        //Button addArtikelButton = new Button("Artikel hinzufügen...");
-
-        HorizontalLayout toolbar = new HorizontalLayout(filterText);
-        toolbar.addClassName("toolbar");
-        return toolbar;
-    }
 
     //Getter & Setter
     public Set<Artikel> getSelectedArtikel() {

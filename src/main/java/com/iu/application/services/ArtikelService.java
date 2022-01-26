@@ -21,6 +21,8 @@ public class ArtikelService {
 
     private final String deleteArtikelQuerry= "DELETE FROM article WHERE userId = (?) AND name = (?)";
 
+    private final String saveArtikelQuerry= "INSERT INTO article (userId, name, anzahl, preis, kaufdatum) VALUES (?,?,?,?,?)";
+
 
     /**
      * Get ArtikelListe from Database
@@ -35,5 +37,10 @@ public class ArtikelService {
         for(Artikel artikel:artikelListe){
             jdbcTemplate.update(deleteArtikelQuerry,new Object[]{artikel.getUserID(),artikel.getName()});
         }
+    }
+
+    public void saveArtikel(Artikel artikel) {
+            jdbcTemplate.update(saveArtikelQuerry, new Object[]{artikel.getUserID(),artikel.getName(), artikel.getAnzahl(), artikel.getPreis(), artikel.getKaufDatum()});
+
     }
 }

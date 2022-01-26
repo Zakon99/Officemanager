@@ -18,8 +18,8 @@ import java.util.Set;
 public class ArtikelGrid {
     private HomeView homeView;
     private Grid<Artikel> grid = new Grid<>(Artikel.class);
-    private TextField filterText = new TextField();
     private Set<Artikel> selectedArtikel;
+    private Set<Artikel> artikel;
 
     public ArtikelGrid(HomeView homeView) {
         this.homeView = homeView;
@@ -37,18 +37,11 @@ public class ArtikelGrid {
         grid.addSelectionListener(event->{
             selectedArtikel = grid.getSelectedItems();
         });
+
     }
 
-    private HorizontalLayout getToolbar() {
-        filterText.setPlaceholder("Filtern");
-        filterText.setClearButtonVisible(true);
-        filterText.setValueChangeMode(ValueChangeMode.LAZY);
-
-        //Button addArtikelButton = new Button("Artikel hinzufügen...");
-
-        HorizontalLayout toolbar = new HorizontalLayout(filterText);
-        toolbar.addClassName("toolbar");
-        return toolbar;
+    public Set<Artikel> getArtikel() {
+        return artikel;
     }
 
     //Getter & Setter
@@ -59,4 +52,5 @@ public class ArtikelGrid {
     public Grid<Artikel> getGrid() {
         return grid;
     }
+
 }

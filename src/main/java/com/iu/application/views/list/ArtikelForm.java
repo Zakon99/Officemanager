@@ -9,11 +9,13 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class ArtikelForm{
@@ -26,7 +28,7 @@ public class ArtikelForm{
     //Fields
     private TextField artikel_name = new TextField("Artikel Name");
     private TextField anzahl = new TextField("Anzahl");
-    private NumberField preis = new NumberField("Preis");
+    private NumberField preis = new NumberField("Preis (Preis in Euro)");
     private DatePicker kaufdatum = new DatePicker("Kaufdatum");
     private TextField employeeName = new TextField("Mitarbeiter Name");
 
@@ -35,6 +37,7 @@ public class ArtikelForm{
     private Button delete = new Button("Löschen");
     private Button transferToEmployee = new Button("Mitarbeiter überschreiben");
     private Button createAbschreibung = new Button("Abschreibung erstellen");
+
 
     public ArtikelForm(HomeView homeView,ArtikelLogic artikelLogic){
         this.homeView = homeView;
@@ -60,6 +63,7 @@ public class ArtikelForm{
      * Setzt die Aktionen für die Buttons;
      */
     private void configureButtonActions(){
+
         delete.addClickListener(clickEvent -> {
            artikelLogic.deleteArtikel(homeView.getArtikelGrid().getSelectedArtikel());
            //TODO homeView.getArtikelGrid().getGrid().getDataProvider().refreshAll();
@@ -78,6 +82,11 @@ public class ArtikelForm{
                 homeView.getArtikelGrid().getGrid().setItems(artikelLogic.getUserArtikel(1).getArtikelListe());
             }
             homeView.getEmployeeGrid().getGrid().setItems(homeView.getArtikelGrid().getSelectedArtikel());
+        });
+
+        save.addClickListener(buttonClickEvent -> {
+            artikelLogic.saveArtikel(new Artikel(1L,artikel_name.getValue(),Integer.valueOf(anzahl.getValue()),Double.valueOf(preis.getValue()), kaufdatum.getValue()));
+            homeView.getArtikelGrid().getGrid().setItems(artikelLogic.getUserArtikel(1).getArtikelListe());
         });
     }
 
