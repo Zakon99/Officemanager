@@ -1,23 +1,25 @@
 package com.iu.application.entity;
 
-
 import java.time.LocalDate;
-import java.util.List;
 
+/**
+ * Klasse für ein Artikel
+ * @author Mirsad Dzananovic
+ */
 public class Artikel {
     private Long userID;
     private String name;
     private int anzahl;
     private double preis;
-    private LocalDate kaufDatum;
+    private LocalDate kaufdatum;
     private String mitarbeiterName;
 
-    public Artikel(Long userID, String name, int anzahl, double preis, LocalDate kaufDatum) {
+    public Artikel(Long userID, String name, int anzahl, double preis, LocalDate kaufdatum) {
         this.userID = userID;
         this.name = name;
         this.anzahl = anzahl;
         this.preis = preis;
-        this.kaufDatum = kaufDatum;
+        this.kaufdatum = kaufdatum;
     }
 
     public Artikel() {
@@ -48,10 +50,6 @@ public class Artikel {
         this.anzahl = anzahl;
     }
 
-    public LocalDate getKaufDatum() {
-        return kaufDatum;
-    }
-
     public double getPreis() {
         return preis;
     }
@@ -68,7 +66,11 @@ public class Artikel {
         this.mitarbeiterName = mitarbeiterName;
     }
 
-    public void setKaufDatum(LocalDate kaufDatum) {
-        this.kaufDatum = kaufDatum;
+    public LocalDate getKaufdatum() {
+        return kaufdatum;
+    }
+
+    public void setKaufdatum(LocalDate kaufdatum) {
+        this.kaufdatum = kaufdatum;
     }
 }
