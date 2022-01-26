@@ -49,9 +49,8 @@ create table article
     userId int         not null,
     name   varchar(50) not null,
     anzahl int         null,
-    preis  int         null,
-    constraint article_userId_uindex
-        unique (userId)
+    preis  float         null,
+    kaufdatum  date     null,
 );
 
 alter table article
