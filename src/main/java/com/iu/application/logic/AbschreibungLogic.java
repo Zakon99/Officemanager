@@ -14,8 +14,10 @@ import java.util.stream.Stream;
 
 public class AbschreibungLogic {
     private Artikel artikel;
+    //Variables
     private LocalDate heute = LocalDate.now();
     private double gesamtPreis;
+    //PDF Components
     private final String[] artikelTableColumns= {"Artikel", "Preis", "Anzahl","Preis Gesamt","Anschaffungdatum","Nutzungsdauer"};
     private final String[] abschreibungTableColumns= {"Jahr","Restabschreibungssumme","Afa 7,7%","Restbetrag Ende des Jahres"};
 

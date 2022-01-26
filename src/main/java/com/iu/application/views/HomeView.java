@@ -1,9 +1,7 @@
 package com.iu.application.views;
 
-import com.iu.application.entity.User;
 import com.iu.application.logic.ArtikelLogic;
 import com.iu.application.logic.UserLogic;
-import com.iu.application.services.ArtikelService;
 import com.iu.application.views.list.ArtikelForm;
 import com.iu.application.views.list.ArtikelGrid;
 import com.iu.application.views.list.EmployeeGrid;

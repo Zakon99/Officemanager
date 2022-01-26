@@ -60,11 +60,13 @@ public class ArtikelForm{
      * Setzt die Aktionen für die Buttons;
      */
     private void configureButtonActions(){
+        //Delete Button
         delete.addClickListener(clickEvent -> {
            artikelLogic.deleteArtikel(homeView.getArtikelGrid().getSelectedArtikel());
-           //TODO homeView.getArtikelGrid().getGrid().getDataProvider().refreshAll();
+           homeView.getArtikelGrid().getGrid().setItems(artikelLogic.getUserArtikel(1).getArtikelListe());
         });
 
+        //Abschreibungs Button
         createAbschreibung.addClickListener(buttonClickEvent -> {
             abschreibungLogic = new AbschreibungLogic();
             for(Artikel artikel : homeView.getArtikelGrid().getGrid().getSelectedItems()){
@@ -72,6 +74,7 @@ public class ArtikelForm{
             }
         });
 
+        //
         transferToEmployee.addClickListener(clickEvent -> {
             for(Artikel artikel : homeView.getArtikelGrid().getSelectedArtikel()){
                 artikel.setMitarbeiterName(employeeName.getValue());
