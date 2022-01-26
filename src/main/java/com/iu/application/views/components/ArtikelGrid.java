@@ -31,7 +31,6 @@ public class ArtikelGrid {
         grid.addSelectionListener(event->{
             selectedArtikel = grid.getSelectedItems();
         });
-
     }
 
     public Set<Artikel> getArtikel() {

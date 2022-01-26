@@ -1,4 +1,4 @@
-package com.iu.application.views.list;
+package com.iu.application.views.components;
 
 import com.iu.application.entity.Artikel;
 import com.iu.application.logic.AbschreibungLogic;
@@ -13,40 +13,49 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import java.time.LocalDate;
-import java.util.List;
-
+/**
+ * Klasse für die erstellung der ArtikelForm
+ * @author Hari Rait, Mirsad Dzananovic
+ */
 public class ArtikelForm{
     private ArtikelLogic artikelLogic;
     private AbschreibungLogic abschreibungLogic;
     private HomeView homeView;
-
+    //Components
     private FormLayout artieklForm = new FormLayout();
-
     //Fields
     private TextField artikel_name = new TextField("Artikel Name");
     private TextField anzahl = new TextField("Anzahl");
     private NumberField preis = new NumberField("Preis (Preis in Euro)");
     private DatePicker kaufdatum = new DatePicker("Kaufdatum");
     private TextField employeeName = new TextField("Mitarbeiter Name");
-
     //Buttons
     private Button save = new Button("Hinzufügen");
     private Button delete = new Button("Löschen");
     private Button transferToEmployee = new Button("Mitarbeiter überschreiben");
     private Button createAbschreibung = new Button("Abschreibung erstellen");
 
-
     public ArtikelForm(HomeView homeView,ArtikelLogic artikelLogic){
         this.homeView = homeView;
         this.artikelLogic = artikelLogic;
-        artieklForm.setVisible(true);
+
+        configureFormStyle();
         configureButtonActions();
         artieklForm.add(artikel_name,anzahl, preis, kaufdatum,employeeName,createButtonsLayout());
     }
 
+    /**
+     * Konfiguriert die Style Parameter der Form
+     */
+    private void configureFormStyle(){
+        artieklForm.setVisible(true);
+    }
+
+    /**
+     * Erstellt das ButtonLayout
+     * @return Layout für Buttons
+     */
     private HorizontalLayout createButtonsLayout() {
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         delete.addThemeVariants(ButtonVariant.LUMO_ERROR);
@@ -63,12 +72,13 @@ public class ArtikelForm{
      * Setzt die Aktionen für die Buttons;
      */
     private void configureButtonActions(){
-
+        //Delete Button
         delete.addClickListener(clickEvent -> {
            artikelLogic.deleteArtikel(homeView.getArtikelGrid().getSelectedArtikel());
-           //TODO homeView.getArtikelGrid().getGrid().getDataProvider().refreshAll();
+            homeView.getArtikelGrid().getGrid().setItems(artikelLogic.getUserArtikel(1).getArtikelListe());
         });
 
+        //Abschreibung Button
         createAbschreibung.addClickListener(buttonClickEvent -> {
             abschreibungLogic = new AbschreibungLogic();
             for(Artikel artikel : homeView.getArtikelGrid().getGrid().getSelectedItems()){
@@ -76,12 +86,19 @@ public class ArtikelForm{
             }
         });
 
+        //Übergabe an Mitarbeiter Button
         transferToEmployee.addClickListener(clickEvent -> {
-            for(Artikel artikel : homeView.getArtikelGrid().getSelectedArtikel()){
-                artikel.setMitarbeiterName(employeeName.getValue());
-                homeView.getArtikelGrid().getGrid().setItems(artikelLogic.getUserArtikel(1).getArtikelListe());
+            Label statusLabel = homeView.getStatusLabel();
+            if(!employeeName.getValue().isEmpty()) {
+                for (Artikel artikel : homeView.getArtikelGrid().getSelectedArtikel()) {
+                    artikel.setMitarbeiterName(employeeName.getValue());
+                }
+                statusLabel.setVisible(false);
+                homeView.getEmployeeGrid().getGrid().setItems(homeView.getArtikelGrid().getSelectedArtikel());
+            }else{
+                statusLabel.setVisible(true);
+                statusLabel.setText("Bitte gebe einen Mitarbeitername an.");
             }
-            homeView.getEmployeeGrid().getGrid().setItems(homeView.getArtikelGrid().getSelectedArtikel());
         });
 
         save.addClickListener(buttonClickEvent -> {

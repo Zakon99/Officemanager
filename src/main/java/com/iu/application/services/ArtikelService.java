@@ -16,17 +16,13 @@ import java.util.Set;
  */
 @Service
 public class ArtikelService {
-
     @Autowired
     JdbcTemplate jdbcTemplate;
 
     //Stmt
     private final String getUserArtikelQuerry="SELECT * FROM article WHERE userId = (?)";
-
     private final String deleteArtikelQuerry= "DELETE FROM article WHERE userId = (?) AND name = (?)";
-
     private final String saveArtikelQuerry= "INSERT INTO article (userId, name, anzahl, preis, kaufdatum) VALUES (?,?,?,?,?)";
-
 
     /**
      * Holt die Artikel des users von der Datenbank
@@ -48,7 +44,7 @@ public class ArtikelService {
     }
 
     public void saveArtikel(Artikel artikel) {
-            jdbcTemplate.update(saveArtikelQuerry, new Object[]{artikel.getUserID(),artikel.getName(), artikel.getAnzahl(), artikel.getPreis(), artikel.getKaufDatum()});
+            jdbcTemplate.update(saveArtikelQuerry, new Object[]{artikel.getUserID(),artikel.getName(), artikel.getAnzahl(), artikel.getPreis(), artikel.getKaufdatum()});
 
     }
 }
