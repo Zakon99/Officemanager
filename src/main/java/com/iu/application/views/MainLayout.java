@@ -4,11 +4,14 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import org.atmosphere.interceptor.AtmosphereResourceStateRecovery;
 
 /**
  * Klasse für das MainLayout
@@ -21,7 +24,6 @@ public class MainLayout extends AppLayout {
     public MainLayout() {
         createHeader();
         createDrawer();
-        createFooter();
     }
 
     /**
@@ -47,9 +49,17 @@ public class MainLayout extends AppLayout {
     }
 
     private void createDrawer() {
-    }
+        Button artikel = new Button("Arikel");
+        Button mitarbeiter = new Button("Mitarbeiter");
+        Button  soon = new Button("commin soon...");
 
-    private void createFooter() {
+        artikel.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
+        mitarbeiter.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
+        soon.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
 
+        addToDrawer(new VerticalLayout(
+                artikel, mitarbeiter, soon
+
+        ));
     }
 }

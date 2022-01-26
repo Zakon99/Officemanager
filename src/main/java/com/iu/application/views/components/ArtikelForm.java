@@ -1,5 +1,6 @@
 package com.iu.application.views.components;
 
+import com.github.jknack.handlebars.internal.lang3.ObjectUtils;
 import com.iu.application.entity.Artikel;
 import com.iu.application.logic.AbschreibungLogic;
 import com.iu.application.logic.ArtikelLogic;
@@ -13,6 +14,8 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
+
+import javax.validation.constraints.Null;
 
 /**
  * Klasse für die erstellung der ArtikelForm
@@ -102,8 +105,15 @@ public class ArtikelForm{
         });
 
         save.addClickListener(buttonClickEvent -> {
-            artikelLogic.saveArtikel(new Artikel(1L,artikel_name.getValue(),Integer.valueOf(anzahl.getValue()),Double.valueOf(preis.getValue()), kaufdatum.getValue()));
-            homeView.getArtikelGrid().getGrid().setItems(artikelLogic.getUserArtikel(1).getArtikelListe());
+            Label formstatusLabel = homeView.getStatusLabel();
+            if (!artikel_name.getValue().isEmpty() && !anzahl.getValue().isEmpty() && preis.getValue() != null && kaufdatum.getValue() != null) {
+                artikelLogic.saveArtikel(new Artikel(1L, artikel_name.getValue(), Integer.valueOf(anzahl.getValue()), Double.valueOf(preis.getValue()), kaufdatum.getValue()));
+                formstatusLabel.setVisible(false);
+                homeView.getArtikelGrid().getGrid().setItems(artikelLogic.getUserArtikel(1).getArtikelListe());
+            }else{
+                formstatusLabel.setVisible(true);
+                formstatusLabel.setText("Bitte befüllen Sie alle felder");
+            }
         });
     }
 
