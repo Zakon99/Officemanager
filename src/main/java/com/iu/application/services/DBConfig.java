@@ -1,5 +1,14 @@
 package com.iu.application.services;
 
+import com.zaxxer.hikari.HikariDataSource;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+
+/**
+ * Klasse zum Conigurieren der Datenbank Properties
+ * @author Mirsad Dzananovic
+ */
 @Configuration(proxyBeanMethods = false)
 public class DBConfig {
 
