@@ -95,7 +95,7 @@ public class ArtikelForm{
                 }
                 statusLabel.setVisible(false);
                 homeView.getEmployeeGrid().getGrid().setItems(homeView.getArtikelGrid().getSelectedArtikel());
-                employeeName.setValue("");
+                employeeName.clear();
             }else{
                 statusLabel.setVisible(true);
                 statusLabel.setText("Bitte gebe einen Mitarbeitername an.");
