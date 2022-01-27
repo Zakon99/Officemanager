@@ -24,6 +24,9 @@ public class ArtikelGrid {
         configureGrid();
     }
 
+    /**
+     * Konfiguriert das ArtikelGrid
+     */
     private void configureGrid() {
         grid.addClassNames("artikel-grid");
         grid.setSizeFull();
